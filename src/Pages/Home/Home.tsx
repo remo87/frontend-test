@@ -1,5 +1,4 @@
 import React from "react";
-import { H1 } from "../../Components/Styled";
 
 export const Home = () => {
   return (
