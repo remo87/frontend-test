@@ -14,3 +14,4 @@ export interface Colors {
   white: string;
   whiteTwo: string;
 }
+
