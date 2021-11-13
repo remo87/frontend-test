@@ -13,7 +13,7 @@ const authorizationHeader: RequestInit = {
 const getUrl = (uri: string, filter: IFilter): string => {
   let search = new URLSearchParams();
   Object.entries(filter).forEach(([key, value]) => {
-    search.append(key, value);
+    if (value) search.append(key, value);
   });
   return `${uri}?${search.toString()}`;
 };

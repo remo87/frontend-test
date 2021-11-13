@@ -3,8 +3,8 @@ import { IFilter } from "../../interfaces/requests";
 import { RestaurantsList } from "../RestaurantsList/RestaurantsList";
 import { Filter } from "./Filter";
 import { useRestaurantsRequest } from "./useRestaurantsRequest";
-// import { restaurants } from "./restaurantsData";
 import { SecondaryButton, MainContainer } from "../Styled";
+import { LoadingOverlay } from "../Common/LoadingOverlay/LoadingOverlay";
 
 export const Main = () => {
   const { error, status, restaurants, getRestaurants, clearRestaurants } =
@@ -27,6 +27,13 @@ export const Main = () => {
     }
   };
 
+  const handleSetFilter = (filter: IFilter) => {
+    clearRestaurants();
+    setFilter(filter);
+  };
+
+  const isLoading = status === "pending";
+
   return (
     <MainContainer>
       <h1>Restaurants</h1>
@@ -34,13 +41,14 @@ export const Main = () => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
-      <Filter />
+      <Filter filter={filter} onSetFilter={handleSetFilter} />
       <RestaurantsList restaurants={restaurants?.businesses} />
       {restaurants && restaurants.total > restaurants.businesses.length ? (
         <div className="load-row">
           <SecondaryButton onClick={handleLoadMore}>LOAD MORE</SecondaryButton>
         </div>
       ) : null}
+      {isLoading ? <LoadingOverlay /> : null}
     </MainContainer>
   );
 };

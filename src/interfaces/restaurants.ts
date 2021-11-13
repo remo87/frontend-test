@@ -47,3 +47,15 @@ export interface IRestaurantsList {
 }
 
 export interface IRestaurantDetail {}
+
+export interface ICategories {
+  categories: ICategory[];
+}
+
+export interface ICategory {
+  alias: string;
+  title: string;
+  parent_aliases: string[];
+  country_whitelist: string[];
+  country_blacklist: string[];
+}

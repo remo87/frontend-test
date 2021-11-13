@@ -6,7 +6,6 @@ export const restaurantReducer = (
   action: any
 ): IRestaurantsState => {
   const { type, payload } = action;
-  debugger;
   switch (type) {
     case CONSTANTS.PENDING: {
       return {

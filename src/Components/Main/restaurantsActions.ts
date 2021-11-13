@@ -25,5 +25,5 @@ export const setRestaurantsAction = (
 
 export const getClearRestaurantsAction = (
 ): IClearRestaurantsAction => ({
-  type: CONSTANTS.SET_RESTAURANTS,
+  type: CONSTANTS.CLEAR_RESTAURANTS,
 });

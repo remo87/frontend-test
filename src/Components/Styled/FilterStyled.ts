@@ -14,7 +14,7 @@ export const FilterStyled = styled.div`
   .fields {
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 45%;
   }
 
   & button {
