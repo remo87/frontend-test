@@ -1,12 +1,13 @@
 import { useReducer, useCallback } from "react";
 import { fetchRestaurantsDataAsync } from "../../api/RestaurantsApi";
-import { Filter } from "../../interfaces/requests";
+import { FilterInterface } from "../../interfaces/requests";
 import { RestaurantsState } from "../../interfaces/state";
 import { restaurantReducer } from "./restaurantReducer";
 import {
   getErrorAction,
   getPendingAction,
-  getLoadRestaurantsAction,
+  setRestaurantsAction,
+  loadRestaurantsAction
 } from "./restaurantsActions";
 
 const initialState: RestaurantsState = {
@@ -16,11 +17,21 @@ const initialState: RestaurantsState = {
 export const useRestaurantsRequest = () => {
   const [state, dispatch] = useReducer(restaurantReducer, initialState);
 
-  const getRestaurants = useCallback(async (filter: Filter) => {
+  const getRestaurants = useCallback(async (filter: FilterInterface) => {
     dispatch(getPendingAction());
     try {
       const restaurants = await fetchRestaurantsDataAsync(filter);
-      dispatch(getLoadRestaurantsAction(restaurants));
+      dispatch(setRestaurantsAction(restaurants));
+    } catch (error: any) {
+      dispatch(getErrorAction(error.message));
+    }
+  }, []);
+
+  const loadRestaurants = useCallback(async (filter: FilterInterface) => {
+    dispatch(getPendingAction());
+    try {
+      const restaurants = await fetchRestaurantsDataAsync(filter);
+      dispatch(loadRestaurantsAction(restaurants));
     } catch (error: any) {
       dispatch(getErrorAction(error.message));
     }
@@ -28,5 +39,5 @@ export const useRestaurantsRequest = () => {
 
   const { error, status, restaurants } = state;
 
-  return { error, status, restaurants, getRestaurants };
+  return { error, status, restaurants, getRestaurants, loadRestaurants };
 };

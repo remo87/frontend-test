@@ -32,4 +32,13 @@ module.exports = {
     }),
     new MiniCssExtractPlugin(),
   ],
+  devServer: {
+    proxy: {
+      "/v3": {
+        target: "https://api.yelp.com",
+        secure: false,
+        changeOrigin: true
+      },
+    },
+  },
 };

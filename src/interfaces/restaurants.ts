@@ -1,22 +1,22 @@
-export interface RestauratListItem {
+export interface IRestaurantListItem {
   rating: number;
   price: string;
   phone: string;
   id: string;
   alias: string;
   is_closed: boolean;
-  categories: CategoriesListItem[];
+  categories: ICategoriesListItem[];
   review_count: number;
   name: string;
   url: string;
-  coordinates: Coordinates;
+  coordinates: ICoordinates;
   image_url: string;
-  location: Location;
+  location: ILocation;
   distance: number;
   transactions: string[];
 }
 
-export interface Location {
+export interface ILocation {
   city: string;
   country: string;
   address2: string;
@@ -26,26 +26,24 @@ export interface Location {
   zip_code: string;
 }
 
-export interface CategoriesListItem {
+export interface ICategoriesListItem {
   alias: string;
   title: string;
 }
 
-export interface Region {
-  center: Coordinates;
+export interface IRegion {
+  center: ICoordinates;
 }
 
-export interface Coordinates {
-  latitude: string;
-  longitude: string;
+export interface ICoordinates {
+  latitude: number;
+  longitude: number;
 }
 
-export interface RestuarantsList {
+export interface IRestaurantsList {
   total: number;
-  businesses: RestauratListItem[];
-  region: Region;
+  businesses: IRestaurantListItem[];
+  region: IRegion;
 }
 
-export interface RestaurantDetail {
-    
-}
+export interface IRestaurantDetail {}

@@ -1,14 +1,23 @@
 import { config } from "../config";
-import { Filter } from "../interfaces/requests";
+import { FilterInterface } from "../interfaces/requests";
 
-export const fetchRestaurantsDataAsync = async (filter: Filter) => {
+const authorizationHeader: RequestInit = {
+  method: "GET",
+  credentials: "include",
+  headers: {
+    Authorization: `Bearer ${config.token}`,
+    "Content-Type": "application/json",
+  },
+};
+
+export const fetchRestaurantsDataAsync = async (filter: FilterInterface) => {
   try {
-    const response = await fetch(config.restaurantsUrl);
+    const response = await fetch(config.restaurantsUrl, authorizationHeader);
     const responseBody = await response.json();
     if (response.status !== 200) {
       throw new Error(responseBody);
     }
-    return responseBody.results;
+    return responseBody;
   } catch (error) {
     throw new Error("");
   }

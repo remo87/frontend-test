@@ -13,10 +13,14 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.16.0",
+    "@types/react-star-ratings": "^2.3.0",
     "@types/styled-components": "^5.1.15",
+    "http-proxy-middleware": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-router-dom": "^6.0.2",
+    "react-star-ratings": "^2.3.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {

@@ -1,8 +1,8 @@
-import { RestaurantDetail, RestuarantsList } from "./restaurants";
+import { IRestaurantDetail, IRestaurantsList } from "./restaurants";
 
 export interface RestaurantsState {
   status: string;
-  restaurants?: RestuarantsList;
+  restaurants?: IRestaurantsList;
   error?: string;
 }
 
@@ -20,13 +20,13 @@ export interface ErrorAction {
 export interface LoadRestaurantsAction {
   type: string;
   payload: {
-    rerstaurants: RestuarantsList;
+    rerstaurants: IRestaurantsList;
   };
 }
 
 export interface LoadRestaurantDetailsAction {
   type: string;
   payload: {
-    rerstaurants: RestaurantDetail;
+    rerstaurants: IRestaurantDetail;
   };
 }

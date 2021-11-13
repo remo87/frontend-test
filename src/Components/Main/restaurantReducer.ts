@@ -4,35 +4,29 @@ import {
   ErrorAction,
   LoadRestaurantsAction,
 } from "../../interfaces/state";
+import { CONSTANTS } from "./CONSTANTS";
 
-type Actions = PendingAction & ErrorAction & LoadRestaurantsAction;
-
-export const restaurantReducer = (state: RestaurantsState, action: any): RestaurantsState => {
+export const restaurantReducer = (
+  state: RestaurantsState,
+  action: any
+): RestaurantsState => {
   const { type, payload } = action;
   switch (type) {
-    case "pending": {
+    case CONSTANTS.PENDING: {
       return {
         status: "pending",
         restaurants: undefined,
         error: undefined,
       };
     }
-    case "resolved": {
+    case CONSTANTS.SET_RESTAURANTS: {
       return {
         status: "resolved",
-        restaurants: state.restaurants
-          ? {
-              ...state.restaurants,
-              businesses: [
-                ...state.restaurants.businesses,
-                ...payload.rerstaurants.businesses,
-              ],
-            }
-          : state.restaurants,
+        restaurants: payload.rerstaurants,
         error: undefined,
       };
     }
-    case "rejected": {
+    case CONSTANTS.REJECTED: {
       return {
         status: "rejected",
         restaurants: undefined,
