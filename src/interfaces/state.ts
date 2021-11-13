@@ -1,30 +1,34 @@
 import { IRestaurantDetail, IRestaurantsList } from "./restaurants";
 
-export interface RestaurantsState {
+export interface IRestaurantsState {
   status: string;
   restaurants?: IRestaurantsList;
   error?: string;
 }
 
-export interface PendingAction {
+export interface IPendingAction {
   type: string;
 }
 
-export interface ErrorAction {
+export interface IErrorAction {
   type: string;
   payload: {
     error: string;
   };
 }
 
-export interface LoadRestaurantsAction {
+export interface ILoadRestaurantsAction {
   type: string;
   payload: {
     rerstaurants: IRestaurantsList;
   };
 }
 
-export interface LoadRestaurantDetailsAction {
+export interface IClearRestaurantsAction {
+  type: string;
+}
+
+export interface ILoadRestaurantDetailsAction {
   type: string;
   payload: {
     rerstaurants: IRestaurantDetail;

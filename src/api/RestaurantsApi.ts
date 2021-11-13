@@ -1,5 +1,5 @@
 import { config } from "../config";
-import { FilterInterface } from "../interfaces/requests";
+import { IFilter } from "../interfaces/requests";
 
 const authorizationHeader: RequestInit = {
   method: "GET",
@@ -10,9 +10,18 @@ const authorizationHeader: RequestInit = {
   },
 };
 
-export const fetchRestaurantsDataAsync = async (filter: FilterInterface) => {
+const getUrl = (uri: string, filter: IFilter): string => {
+  let search = new URLSearchParams();
+  Object.entries(filter).forEach(([key, value]) => {
+    search.append(key, value);
+  });
+  return `${uri}?${search.toString()}`;
+};
+
+export const fetchRestaurantsDataAsync = async (filter: IFilter) => {
   try {
-    const response = await fetch(config.restaurantsUrl, authorizationHeader);
+    const url = getUrl(config.restaurantsUrl, filter);
+    const response = await fetch(url, authorizationHeader);
     const responseBody = await response.json();
     if (response.status !== 200) {
       throw new Error(responseBody);

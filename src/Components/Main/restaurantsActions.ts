@@ -1,30 +1,29 @@
 import { IRestaurantsList  } from "../../interfaces/restaurants";
 import {
-  ErrorAction,
-  LoadRestaurantsAction,
-  PendingAction,
+  IErrorAction,
+  ILoadRestaurantsAction,
+  IClearRestaurantsAction,
+  IPendingAction,
 } from "../../interfaces/state";
 import { CONSTANTS } from "./CONSTANTS";
 
-export const getPendingAction = (): PendingAction => ({
+export const getPendingAction = (): IPendingAction => ({
   type: CONSTANTS.PENDING,
 });
 
-export const getErrorAction = (error: string): ErrorAction => ({
+export const getErrorAction = (error: string): IErrorAction => ({
   type: CONSTANTS.REJECTED,
   payload: { error },
 });
 
 export const setRestaurantsAction = (
   rerstaurants: IRestaurantsList
-): LoadRestaurantsAction => ({
+): ILoadRestaurantsAction => ({
   type: CONSTANTS.SET_RESTAURANTS,
   payload: { rerstaurants },
 });
 
-export const loadRestaurantsAction = (
-  rerstaurants: IRestaurantsList
-): LoadRestaurantsAction => ({
+export const getClearRestaurantsAction = (
+): IClearRestaurantsAction => ({
   type: CONSTANTS.SET_RESTAURANTS,
-  payload: { rerstaurants },
 });

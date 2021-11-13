@@ -1,23 +1,23 @@
 import { useReducer, useCallback } from "react";
 import { fetchRestaurantsDataAsync } from "../../api/RestaurantsApi";
-import { FilterInterface } from "../../interfaces/requests";
-import { RestaurantsState } from "../../interfaces/state";
+import { IFilter } from "../../interfaces/requests";
+import { IRestaurantsState } from "../../interfaces/state";
 import { restaurantReducer } from "./restaurantReducer";
 import {
+  getClearRestaurantsAction,
   getErrorAction,
   getPendingAction,
   setRestaurantsAction,
-  loadRestaurantsAction
 } from "./restaurantsActions";
 
-const initialState: RestaurantsState = {
+const initialState: IRestaurantsState = {
   status: "pending",
 };
 
 export const useRestaurantsRequest = () => {
   const [state, dispatch] = useReducer(restaurantReducer, initialState);
 
-  const getRestaurants = useCallback(async (filter: FilterInterface) => {
+  const getRestaurants = useCallback(async (filter: IFilter) => {
     dispatch(getPendingAction());
     try {
       const restaurants = await fetchRestaurantsDataAsync(filter);
@@ -27,17 +27,11 @@ export const useRestaurantsRequest = () => {
     }
   }, []);
 
-  const loadRestaurants = useCallback(async (filter: FilterInterface) => {
-    dispatch(getPendingAction());
-    try {
-      const restaurants = await fetchRestaurantsDataAsync(filter);
-      dispatch(loadRestaurantsAction(restaurants));
-    } catch (error: any) {
-      dispatch(getErrorAction(error.message));
-    }
-  }, []);
+  const clearRestaurants = () => {
+    dispatch(getClearRestaurantsAction());
+  };
 
   const { error, status, restaurants } = state;
 
-  return { error, status, restaurants, getRestaurants, loadRestaurants };
+  return { error, status, restaurants, getRestaurants, clearRestaurants };
 };

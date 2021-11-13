@@ -1,4 +1,4 @@
-export interface FilterInterface {
+export interface IFilter {
   term: string;
   location: string;
   open_now?: boolean;
