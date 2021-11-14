@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { KeyValue } from "../../interfaces/common";
 import { Checkbox, SelectionList } from "../Common";
-import { FilterStyled } from "../Styled";
+import { FilterStyled, HR } from "../Styled";
 import { prices, restaurantCategoires } from "../../utils/filterData";
 import { IFilter } from "../../interfaces/requests";
 
@@ -11,7 +11,6 @@ interface IProps {
 }
 
 export const Filter = ({ filter, onSetFilter }: IProps) => {
-  const [checked, setChecked] = useState(false);
 
   const handleSetIsOpen = () => {
     const newFilter: IFilter = {
@@ -47,38 +46,46 @@ export const Filter = ({ filter, onSetFilter }: IProps) => {
     onSetFilter(newFilter);
   };
 
+  const emptyFilter = !filter.categories && !filter.price && !filter.open_now;
+
   return (
-    <FilterStyled>
-      <div className="fields">
-        <label>Filter By:</label>
-        <Checkbox
-          checked={checked}
-          onChange={() => setChecked((prev) => !prev)}
-          label="Open Now"
-        />
-        <div>
-          <SelectionList
-            label="Price"
-            name="price"
-            selected={filter.price || "all"}
-            items={prices}
-            selectedItem={handleSelectedPrice}
+    <div>
+      <HR />
+      <FilterStyled>
+        <div className="fields">
+          <label>Filter By:</label>
+          <Checkbox
+            checked={filter.open_now}
+            onChange={handleSetIsOpen}
+            label="Open Now"
           />
+          <div>
+            <SelectionList
+              label="Price"
+              name="price"
+              selected={filter.price || "all"}
+              items={prices}
+              selectedItem={handleSelectedPrice}
+            />
+          </div>
+          <div>
+            <SelectionList
+              label="Categories"
+              name="categories"
+              selected={filter.categories || "all"}
+              items={restaurantCategoires}
+              selectedItem={handleSelectedCategory}
+              style={{ width: "11.875rem" }}
+            />
+          </div>
         </div>
         <div>
-          <SelectionList
-            label="Categories"
-            name="categories"
-            selected={filter.categories || "all"}
-            items={restaurantCategoires}
-            selectedItem={handleSelectedCategory}
-            style={{ width: "11.875rem" }}
-          />
+          <button disabled={emptyFilter} onClick={handleClear}>
+            CLEAR ALL
+          </button>
         </div>
-      </div>
-      <div>
-        <button onClick={handleClear}>CLEAR ALL</button>
-      </div>
-    </FilterStyled>
+      </FilterStyled>
+      <HR />
+    </div>
   );
 };

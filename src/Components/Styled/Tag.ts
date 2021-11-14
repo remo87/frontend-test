@@ -21,4 +21,5 @@ export const Tag = styled.div<IProps>`
   & > .text {
     font-size: ${({ big }) => (big ? "1.375rem" : "0.75rem")};
   }
+
 `;

@@ -19,7 +19,7 @@ const HeadContainer = styled.div`
     margin-top: 3.0625rem;
     margin-bottom: 3.0625rem;
   }
-  
+
   & .address {
     color: ${({ theme }) => theme.colors.black};
     font-size: 1.25rem;
@@ -27,6 +27,16 @@ const HeadContainer = styled.div`
     letter-spacing: 0.0625rem;
     margin-top: 1rem;
     margin-bottom: 3.0625rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    & .views {
+      flex-direction: column;
+    }
+
+    & img {
+      width: 100%;
+    }
   }
 `;
 
@@ -81,8 +91,10 @@ export const DetailHead = ({ details }: IProps) => (
       </div>
       <HR />
     </div>
-    <Row>
-      <div><MapContainer coordinates={details?.coordinates} /></div>
+    <Row className="views">
+      <div>
+        <MapContainer coordinates={details?.coordinates} />
+      </div>
       <PhotoBar>
         {details?.photos.map((photo) => (
           <PhotoItem key={photo}>

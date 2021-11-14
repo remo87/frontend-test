@@ -18,6 +18,11 @@ const CardContainer = styled.div`
     margin-bottom: 5rem;
     margin-top: 5rem;
   }
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    .row-content {
+      flex-direction: column;
+    }
+  }
 `;
 
 const TextContainer = styled.div`
@@ -58,7 +63,7 @@ const UserContainer = styled.div`
 
 export const ReviewCard = ({ review }: IProps) => (
   <CardContainer>
-    <Row>
+    <Row className="row-content">
       <UserContainer>
         <Avatar src={review.user.image_url} />
         <div>

@@ -11,6 +11,7 @@ export const theme: Theme = {
     grayThree: "#757575",
     grayFour: "#606060",
     grayFive: "#E6E6E6",
+    graySix: "#CDCDCD",
     enabledGreen: "#00E8A4",
     disabledRed: "#FF3548",
     white: "#FFFFFF",

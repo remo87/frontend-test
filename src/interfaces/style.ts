@@ -14,6 +14,7 @@ export interface Colors {
   grayThree: string;
   grayFour: string;
   grayFive: string;
+  graySix: string;
   enabledGreen: string;
   disabledRed: string;
   white: string;

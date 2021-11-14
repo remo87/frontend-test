@@ -1,15 +1,20 @@
 import React from "react";
 import { IRestaurantListItem } from "../../interfaces/restaurants";
 import { Card, PrimaryButton, theme } from "../Styled";
-import { ClosedTag, OpenTag } from "../Tags";
+import { ClosedTag, ClosedTagMobile, OpenTag, OpenTagMobile } from "../Tags";
 import StarRatings from "react-star-ratings";
 import { Link } from "react-router-dom";
+import { useWindowSize } from "../../hooks/useWindow";
 
 interface Props {
   restaurant: IRestaurantListItem;
 }
 
 export const RestaurantCard = ({ restaurant }: Props) => {
+  const size = useWindowSize();
+
+  const isMobile = size.width && size.width < 600;
+
   return (
     <Card>
       <img src={restaurant.image_url} alt="" />
@@ -29,10 +34,21 @@ export const RestaurantCard = ({ restaurant }: Props) => {
           <span>
             {restaurant.categories[0].title} - {restaurant.price}
           </span>
-          <div>{restaurant.is_closed ? <ClosedTag /> : <OpenTag />}</div>
+          {isMobile ? (
+            <div>
+              {restaurant.is_closed ? <ClosedTagMobile /> : <OpenTagMobile />}
+            </div>
+          ) : (
+            <div>{restaurant.is_closed ? <ClosedTag /> : <OpenTag />}</div>
+          )}
         </div>
+        <Link className="mobile" to={`/${restaurant.id}`}>
+          Learn More
+        </Link>
       </div>
-      <Link to={`/${restaurant.id}`}>LEARN MORE</Link>
+      <Link className="full" to={`/${restaurant.id}`}>
+        LEARN MORE
+      </Link>
     </Card>
   );
 };

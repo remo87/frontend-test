@@ -54,4 +54,42 @@ export const Card = styled.div`
     text-align: center;
     text-decoration: none;
   }
+
+  & .mobile {
+    display: none;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    flex-direction: row;
+    height: unset;
+
+    & > img {
+      width: 7.25rem;
+      height: 8.25rem;
+    }
+
+    & h4 {
+      font-size: 1.25rem;
+      line-height: 1.625rem;
+      letter-spacing: 0.03125rem;
+      color: ${({ theme }) => theme.colors.black};
+      margin: 0;
+    }
+
+    & > .text-content {
+      margin-left: 0.75rem;
+    }
+
+    & .full {
+      display: none;
+    }
+
+    & .mobile {
+      display: block;
+      background: none;
+      border: none;
+      color: ${({ theme }) => theme.colors.blueTwo};
+      text-align: start;
+    }
+  }
 `;
