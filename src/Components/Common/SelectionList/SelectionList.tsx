@@ -1,6 +1,7 @@
 import React, { useState, FC } from "react";
 import { KeyValue } from "../../../interfaces/common";
 import styled from "../../Styled/styled-components";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 interface IProps {
   label: string;
@@ -40,6 +41,11 @@ const Container = styled.div<IStyleProps>`
     color: ${({ theme }) => theme.colors.blueTwo};
     font-size: 1rem;
   }
+
+  & .label-container {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 const Overlay = styled.div`
@@ -78,9 +84,12 @@ export const SelectionList: FC<IProps> = ({
 
   return (
     <Container width={style?.width}>
-      <span className="label" onClick={() => setShow((prev) => !prev)}>
-        {label}
-      </span>
+      <div className="label-container" onClick={() => setShow((prev) => !prev)}>
+        <span className="label">
+          {label}
+        </span>
+        {show ? <FaChevronUp /> : <FaChevronDown />}
+      </div>
       {show ? (
         <>
           <Overlay onClick={() => setShow(false)}></Overlay>
@@ -92,7 +101,9 @@ export const SelectionList: FC<IProps> = ({
                 type="radio"
                 value="all"
                 checked={"all" === selected}
-                onChange={() => handleSelectedItem({ key: "all", value: "all" })}
+                onChange={() =>
+                  handleSelectedItem({ key: "all", value: "all" })
+                }
               />
               <label htmlFor="all">All</label>
             </ListItem>
