@@ -21,7 +21,7 @@ export const Card = styled.div`
   & h4 {
     margin-top: 1rem;
   }
-  
+
   & .rating-container {
     margin-top: 0.5rem;
   }
@@ -41,5 +41,17 @@ export const Card = styled.div`
 
   & > button {
     width: 100%;
+  }
+
+  & a {
+    background-color: ${({ theme }) => theme.colors.blueTwo};
+    color: ${({ theme }) => theme.colors.white};
+    line-height: 1rem;
+    font-size: 0.875rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: none;
+    text-align: center;
+    text-decoration: none;
   }
 `;

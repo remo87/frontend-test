@@ -3,6 +3,7 @@ import { IRestaurantListItem } from "../../interfaces/restaurants";
 import { Card, PrimaryButton, theme } from "../Styled";
 import { ClosedTag, OpenTag } from "../Tags";
 import StarRatings from "react-star-ratings";
+import { Link } from "react-router-dom";
 
 interface Props {
   restaurant: IRestaurantListItem;
@@ -31,7 +32,7 @@ export const RestaurantCard = ({ restaurant }: Props) => {
           <div>{restaurant.is_closed ? <ClosedTag /> : <OpenTag />}</div>
         </div>
       </div>
-      <PrimaryButton>LEARN MORE</PrimaryButton>
+      <Link to={`/${restaurant.id}`}>LEARN MORE</Link>
     </Card>
   );
 };
