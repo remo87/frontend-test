@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.cdnfonts.com/css/helvetica-neue-9');
 
     body {
-        font-family:  "Helvetica Neue", "HelveticaNeue-Light", "Helvetica Neue Light";
+        font-family: Roboto, "Helvetica Neue", "HelveticaNeue-Light", "Helvetica Neue Light";
         color: ${({ theme }) => theme.colors.secondary}
     }
     

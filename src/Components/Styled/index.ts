@@ -8,5 +8,7 @@ export { StyledBody } from "./StyledBody";
 export { theme } from "./theme";
 export { FilterStyled } from "./FilterStyled";
 export { MainContainer } from "./MainContainer";
+export { Row } from "./Row";
+export { HR } from "./HR";
 import GlobalStyle from "./Global";
 export default GlobalStyle;

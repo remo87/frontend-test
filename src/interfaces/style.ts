@@ -9,9 +9,11 @@ export interface Colors {
   secondary: string;
   blueTwo: string;
   blueThree: string;
+  blueFour: string;
   grayTwo: string;
   grayThree: string;
   grayFour: string;
+  grayFive: string;
   enabledGreen: string;
   disabledRed: string;
   white: string;

@@ -32,14 +32,29 @@ export const fetchRestaurantsDataAsync = async (filter: IFilter) => {
   }
 };
 
-export const fetchRestaurantDetailAsync = async (id: string) => {
+export const fetchRestaurantDetailsDataAsync = async (id: string) => {
   try {
-    const response = await fetch(`${config.restaurantDetailUrl}${id}`);
+    const url = `${config.restaurantDetailUrl}/${id}`;
+    const response = await fetch(url, authorizationHeader);
     const responseBody = await response.json();
     if (response.status !== 200) {
       throw new Error(responseBody);
     }
-    return responseBody.results;
+    return responseBody;
+  } catch (error) {
+    throw new Error("");
+  }
+};
+
+export const fetchRestaurantReviewsDataAsync = async (id: string) => {
+  try {
+    const url = `${config.restaurantDetailUrl}/${id}/reviews`;
+    const response = await fetch(url, authorizationHeader);
+    const responseBody = await response.json();
+    if (response.status !== 200) {
+      throw new Error(responseBody);
+    }
+    return responseBody;
   } catch (error) {
     throw new Error("");
   }

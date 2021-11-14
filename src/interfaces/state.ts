@@ -1,8 +1,20 @@
-import { IRestaurantDetail, IRestaurantsList } from "./restaurants";
+import { IRestaurantDetails, IRestaurantsList, IReviewList } from "./restaurants";
 
 export interface IRestaurantsState {
   status: string;
   restaurants?: IRestaurantsList;
+  error?: string;
+}
+
+export interface IRestaurantDetailState {
+  status: string;
+  details?: IRestaurantDetails;
+  error?: string;
+}
+
+export interface IRestaurantReviewsState {
+  status: string;
+  reviews?: IReviewList;
   error?: string;
 }
 
@@ -31,6 +43,13 @@ export interface IClearRestaurantsAction {
 export interface ILoadRestaurantDetailsAction {
   type: string;
   payload: {
-    rerstaurants: IRestaurantDetail;
+    details: IRestaurantDetails;
+  };
+}
+
+export interface ILoadReviewsAction {
+  type: string;
+  payload: {
+    reviews: IReviewList;
   };
 }

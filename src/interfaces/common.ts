@@ -3,6 +3,7 @@ export interface IConfig {
   restaurantDetailUrl: string;
   categoriesUrl: string;
   token: string;
+  mapKey: string;
 }
 
 export interface KeyValue {
